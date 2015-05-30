@@ -7,6 +7,7 @@
 package Splash;
 
 import com.sun.awt.AWTUtilities;
+import java.util.Random;
 
 /**
  *
@@ -18,15 +19,15 @@ public final class Splash_Ventana extends javax.swing.JFrame {
      * Creates new form Ventana
      */
     double i =50, j =1;
-    
+     ImagenDeFondo modelo;
+     ImagenDeFondo modelos = new ImagenDeFondo("Unid_conecta.png");
     Cargar  hilo;
-    private final ImagenDeFondo modelo = new ImagenDeFondo("Unid_conecta.png");
+    //= new ImagenDeFondo("Unid_conecta.png");
     public Splash_Ventana() {
         initComponents();
-        
-        setContentPane(modelo);
+        //setContentPane(modelos);
         iniciar();
-        
+        random();
     }
     public void iniciar(){
         setLocationRelativeTo(null);
@@ -34,6 +35,16 @@ public final class Splash_Ventana extends javax.swing.JFrame {
         hilo.start();
         hilo = null;
     }
+    public void random(){
+        String arr[]  = new String[]{"Unid_conecta.png","adm.jpg","comunicacion.jpg","lic_sis.jpg"};
+        Random img = new Random();
+        int x = img.nextInt(arr.length-1);
+        String aux = arr[x].toString();
+        System.out.println(""+aux);
+        modelo = new ImagenDeFondo(aux);
+        setContentPane(modelo);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

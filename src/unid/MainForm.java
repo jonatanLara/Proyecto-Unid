@@ -7,8 +7,9 @@ package unid;
 
 import Splash.ImagenDeFondo;
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -17,16 +18,25 @@ import java.awt.Graphics2D;
 public class MainForm extends javax.swing.JFrame {
 
     TablaExcel tabla = new TablaExcel();
-    ImagenDeFondo fondo = new ImagenDeFondo("/Icons/sin_limite.jpg");
-    
+   // ImagenDeFondo fondo = new ImagenDeFondo("/Icons/sin_limite.jpg");
+    ImagenDeFondo modelos;
     public MainForm() {
-        setContentPane(fondo);//si pongo el metodo antes se vera como un fondo
+        setFondo();
+       // setContentPane(fondo);//si pongo el metodo antes se vera como un fondo
         initComponents();
         setLocationRelativeTo(null);
         jPanel1.setBackground(new Color(0, 0, 0, 5));
         
     }
-
+public void setFondo(){
+        String arr[]  = new String[]{"Unid_conecta.png","adm.jpg","comunicacion.jpg","lic_sis.jpg"};
+        Random img = new Random();
+        int x = img.nextInt(arr.length-1);
+        String aux = arr[x].toString();
+        System.out.println(""+aux);
+        modelos = new ImagenDeFondo("/Splash/"+aux);
+        setContentPane(modelos);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,6 +51,10 @@ public class MainForm extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        MenuGuardar = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,6 +93,39 @@ public class MainForm extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
+
+        MenuGuardar.setText("Guardar");
+        MenuGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuGuardarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MenuGuardar);
+
+        jMenuItem2.setText("Mostrar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
+        jMenuItem3.setText("Buscar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem3);
+
+        jMenuItem4.setText("Identificar");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem4);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -104,7 +151,12 @@ public class MainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        int W = jPanel1.getWidth();
+        int H = jPanel1.getHeight();
+        tabla.setPreferredSize(new Dimension(W, H));
         new explode(jPanel1, tabla).play();
+        jPanel1.updateUI();
+        jPanel1.validate();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuBar1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuBar1MouseEntered
@@ -114,6 +166,22 @@ public class MainForm extends javax.swing.JFrame {
     private void jMenuBar1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuBar1MouseExited
        
     }//GEN-LAST:event_jMenuBar1MouseExited
+
+    private void MenuGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuGuardarActionPerformed
+      tabla.setGuardar();
+    }//GEN-LAST:event_MenuGuardarActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+      tabla.setMostrar();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+      tabla.setBuscar();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        tabla.setIdentyColors();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
    
     /**
      * @param args the command line arguments
@@ -151,10 +219,14 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MenuGuardar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

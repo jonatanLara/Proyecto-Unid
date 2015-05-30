@@ -15,17 +15,38 @@ import javax.swing.table.DefaultTableModel;
 public class TablaExcel extends javax.swing.JPanel {
 
     private DefaultTableModel model;
-    public static int con = 0;
-    public ArrayList listas = new ArrayList();
-    public ArrayList listasr = new ArrayList();
+    //public static int con = 0;
+    ArrayList <Object>listas = new ArrayList<Object>();
+  //  public ArrayList listasr = new ArrayList();
     DropExcel drop;
     public TablaExcel() {
-        initComponents();
+         initComponents();
          drop = new DropExcel(TablaDatos);
          //TablaDatos.setPreferredSize(null);
-        
+       
     }
-
+   /* public Object getGuardar(){
+        for (int i = 0; i < TablaDatos.getColumnCount(); i++) {
+            for (int j = 0; j < TablaDatos.getRowCount(); j++) {
+                listas.add(model.getValueAt(i, j).toString());
+                
+            }
+        }
+        System.out.println("Se guardaron los datos");
+        return listas;
+    }**/
+    public void setGuardar(){
+        drop.guardar();
+    }
+    public void setMostrar(){
+        drop.mostrar();
+    }
+    public void setBuscar(){
+        drop.Buscar();
+    }
+    public void setIdentyColors(){
+        drop.identyColors();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

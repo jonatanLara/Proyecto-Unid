@@ -1,5 +1,6 @@
 package unid;
 
+import java.awt.Color;
 import java.awt.HeadlessException;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -12,6 +13,7 @@ import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -108,22 +110,28 @@ public class DropExcel implements DropTargetListener {
                 //forma la matris para los datos
                 Object[][] data = new String[hoja.getRows()][hoja.getColumns()];
                 //recorre todas las celdas
+                
                 for (int fila = 0; fila < hoja.getRows(); fila++) {
                     for (int columna = 0; columna < hoja.getColumns(); columna++) {
                         //asigana los nombre de la columna
                         if (fila == 0) {
                             //asigna nombre de columna
                             columNames[columna] = hoja.getCell(columna, fila).getContents();//hoja.getCell(columna, fila).getContents();
+                          //  strig.add(columNames[columna]);
                         } else {
                             //lee celda y coloca en el array
                             data[fila][columna] = hoja.getCell(columna, fila).getContents();
+                           // strigs.add(data[fila][columna]);
+                            
                         }
 
                     }
                     // aqui iba antes
                     tableModel = new DefaultTableModel(data, columNames);
                     jtable.setModel(tableModel);
+                    
                     tableModel.removeRow(0);
+                    // guardar();
                 }
 
             }//HeadlessException | UnsupportedFlavorException | IO
@@ -142,5 +150,57 @@ public class DropExcel implements DropTargetListener {
 
     public DropTarget getDropTarget() {
         return this.dt;
+    }
+    ArrayList<Object>strig = new ArrayList<>();
+   
+    ArrayList<Object>strigs = new ArrayList<>();
+   /**
+    * Guarda solo nombres
+    */
+    public void guardar(){
+        for (int i = 0; i < jtable.getRowCount(); i++) {
+            for (int j = 0; j <jtable.getColumnCount(); j++) {
+                strig.add(tableModel.getValueAt(i, j).toString());
+                
+            }
+        }
+        String mensaje = "los datos se guardaron con exito";
+        JOptionPane.showMessageDialog(null, mensaje);
+    }/**
+     * Muestra los datos en consola por ahora!!
+     */
+    public void mostrar(){
+        for (int i = 0; i < jtable.getRowCount(); i++) {
+            for (int j = 0; j <jtable.getColumnCount(); j++) {
+            // strig.add(tableModel.getValueAt(i, j).toString());
+                System.out.println(tableModel.getValueAt(i, j));
+            }}
+        String mensaje = "se mostraron los datos";
+            JOptionPane.showMessageDialog(null, mensaje);
+    }/**
+     * bucar cuantos estudiates pertenecen a esa carrera.!!
+     */
+    public void Buscar(){
+        String Lic = JOptionPane.showInputDialog("Lic. a buscar ?");
+        int cont =0;
+        for (int i = 0; i < jtable.getRowCount(); i++) {
+            for (int j = 0; j <jtable.getColumnCount(); j++) {
+                if (tableModel.getValueAt(i, j).toString().equals(Lic)) {
+                 // model.setColumnCount(i);
+                //    Datos.addColumnSelectionInterval(i, j);
+                  
+                     jtable.setSelectionBackground(Color.YELLOW);
+                    //JOptionPane.showMessageDialog(null, "se Allaron Datos de la ING LISI");
+                    cont ++;
+                }
+            }
+        }
+        //System.out.println("#"+cont);
+        JOptionPane.showMessageDialog(null, " "+ cont);
+    }
+    public void identyColors(){
+            String dato = JOptionPane.showInputDialog("Column ?");
+            int num = Integer.parseInt(dato);
+            jtable.getColumnModel().getColumn(num).setCellRenderer(new  Colors());
     }
 }
