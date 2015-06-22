@@ -1,4 +1,5 @@
 package unid;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -38,13 +39,17 @@ public class explode {
         
         //coordenadas iniciales
         px = this.container.getSize().width/2-this.ancho_min/2;
-        py = this.container.getSize().height/2-this.alto_min/2;        
+        py = this.container.getSize().height/2-this.alto_min/2;  
+        
         content.setLocation( px, py );
         content.setVisible(true);
-        
+        content.setBackground(new Color(0, 0, 0, 25));
         //se agrega al contenedor el JPanel contenido
         this.container.add( content );
+        this.container.updateUI();
+        this.container.validate();
         count = 10;
+        
     }
     
     /**
@@ -72,7 +77,8 @@ public class explode {
                        close();                       
                    }
                    content.setSize( d );
-                   container.updateUI();                        
+                   container.updateUI();  
+                   container.validate();
                 }
               }, 100, velocidad , TimeUnit.MILLISECONDS );
             

@@ -5,6 +5,7 @@
  */
 package unid;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,8 +21,14 @@ public class TablaExcel extends javax.swing.JPanel {
   //  public ArrayList listasr = new ArrayList();
     DropExcel drop;
     public TablaExcel() {
+        
          initComponents();
+         
+         TablaDatos.updateUI();
+         TablaDatos.validate();
          drop = new DropExcel(TablaDatos);
+         
+         
          //TablaDatos.setPreferredSize(null);
        
     }
@@ -35,8 +42,24 @@ public class TablaExcel extends javax.swing.JPanel {
         System.out.println("Se guardaron los datos");
         return listas;
     }**/
+    public void recorrer(){
+        for (int i = 0; i < TablaDatos.getRowCount(); i++) {
+            for (int j = 0; j < TablaDatos.getColumnCount(); j++) {
+               TablaDatos.setBackground(new Color(0, 0, 0, 15));
+                jScrollPane1.setBackground(new Color(0, 0, 0, 15));
+                
+            }
+            
+        }
+    
+    }
+    public void getGuardar(){
+        drop.getguardar();
+        
+    }
     public void setGuardar(){
         drop.guardar();
+        
     }
     public void setMostrar(){
         drop.mostrar();
@@ -47,6 +70,13 @@ public class TablaExcel extends javax.swing.JPanel {
     public void setIdentyColors(){
         drop.identyColors();
     }
+   public void setImprimir(){
+        drop.imprimir();
+   }
+   public void setExclusive(){
+        drop.exclusive();
+   }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,11 +108,11 @@ public class TablaExcel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 734, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

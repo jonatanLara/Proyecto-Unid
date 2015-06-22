@@ -7,9 +7,17 @@ package unid;
 
 import Splash.ImagenDeFondo;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
-import java.util.ArrayList;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.text.TabableView;
 
 /**
  *
@@ -18,17 +26,21 @@ import java.util.Random;
 public class MainForm extends javax.swing.JFrame {
 
     TablaExcel tabla = new TablaExcel();
-   // ImagenDeFondo fondo = new ImagenDeFondo("/Icons/sin_limite.jpg");
+    DropExcel dp;
+    ImagenDeFondo fondo = new ImagenDeFondo("/Splash/Unid_conecta.png");
     ImagenDeFondo modelos;
     public MainForm() {
-        setFondo();
-       // setContentPane(fondo);//si pongo el metodo antes se vera como un fondo
+       // setFondo();
+        setContentPane(fondo);//si pongo el metodo antes se vera como un fondo
         initComponents();
         setLocationRelativeTo(null);
+        Enablef();
         jPanel1.setBackground(new Color(0, 0, 0, 5));
+        enableHomeF();
         
     }
-public void setFondo(){
+   
+    public void setFondo(){
         String arr[]  = new String[]{"Unid_conecta.png","adm.jpg","comunicacion.jpg","lic_sis.jpg"};
         Random img = new Random();
         int x = img.nextInt(arr.length-1);
@@ -49,12 +61,20 @@ public void setFondo(){
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        MenuHome = new javax.swing.JMenuItem();
+        MenuImportar = new javax.swing.JMenuItem();
+        MenuExportar = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         MenuGuardar = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        MenuMostrar = new javax.swing.JMenuItem();
+        MenuBuscar = new javax.swing.JMenuItem();
+        MenuIdentificar = new javax.swing.JMenuItem();
+        MenuItem = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        MenuInformacion = new javax.swing.JMenuItem();
+        MenuAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,10 +86,10 @@ public void setFondo(){
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 426, Short.MAX_VALUE)
+            .addGap(0, 428, Short.MAX_VALUE)
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(235, 235, 235));
+        jMenuBar1.setBorder(null);
         jMenuBar1.setForeground(new java.awt.Color(0, 51, 153));
         jMenuBar1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -81,19 +101,44 @@ public void setFondo(){
         });
 
         jMenu1.setText("File");
+        jMenu1.setContentAreaFilled(false);
+        jMenu1.setFocusable(false);
+        jMenu1.setRequestFocusEnabled(false);
 
-        jMenuItem1.setText("Panel");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        MenuHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/inicio.png"))); // NOI18N
+        MenuHome.setText("Home");
+        MenuHome.setContentAreaFilled(false);
+        MenuHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                MenuHomeActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(MenuHome);
+
+        MenuImportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/excel-xls-icon46x46.png"))); // NOI18N
+        MenuImportar.setText("Importar");
+        MenuImportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuImportarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuImportar);
+
+        MenuExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pdf-icon64x64.png"))); // NOI18N
+        MenuExportar.setText("Exportar");
+        MenuExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuExportarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuExportar);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
+        jMenu2.setEnabled(false);
 
+        MenuGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/04-Save-icon.png"))); // NOI18N
         MenuGuardar.setText("Guardar");
         MenuGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,31 +147,69 @@ public void setFondo(){
         });
         jMenu2.add(MenuGuardar);
 
-        jMenuItem2.setText("Mostrar");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        MenuMostrar.setText("Mostrar");
+        MenuMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                MenuMostrarActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        jMenu2.add(MenuMostrar);
 
-        jMenuItem3.setText("Buscar");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        MenuBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/buscarL.png"))); // NOI18N
+        MenuBuscar.setText("Buscar");
+        MenuBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                MenuBuscarActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        jMenu2.add(MenuBuscar);
 
-        jMenuItem4.setText("Identificar");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        MenuIdentificar.setText("Identificar");
+        MenuIdentificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                MenuIdentificarActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        jMenu2.add(MenuIdentificar);
+
+        MenuItem.setText("null");
+        MenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MenuItem);
 
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("navegacion");
+
+        jMenuItem5.setText("Informacion");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Ayuda?");
+
+        MenuInformacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/info.png"))); // NOI18N
+        MenuInformacion.setText("Información");
+        jMenu4.add(MenuInformacion);
+
+        MenuAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/ayuda.png"))); // NOI18N
+        MenuAyuda.setText("Ayuda?");
+        MenuAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuAyudaActionPerformed(evt);
+            }
+        });
+        jMenu4.add(MenuAyuda);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -149,16 +232,62 @@ public void setFondo(){
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+      public void Enablet(){
+      jMenu2.setEnabled(true);
+      //jMenu3.setEnabled(true);
+        MenuBuscar.setEnabled(true);
+        MenuGuardar.setEnabled(true);
+        MenuItem.setEnabled(true);
+        MenuIdentificar.setEnabled(true);
+        MenuMostrar.setEnabled(true);
+      }
+      public void Enablef(){
+        jMenu2.setEnabled(false);
+      //   jMenu3.setEnabled(false);
+        MenuBuscar.setEnabled(false);
+        MenuGuardar.setEnabled(false);
+        MenuItem.setEnabled(false);
+        MenuIdentificar.setEnabled(false);
+        MenuMostrar.setEnabled(false);
+      }
+      public void enableHome(){
+          MenuImportar.setEnabled(true);
+         MenuExportar.setEnabled(true);
+      }
+      public void enableHomeF(){
+          MenuImportar.setEnabled(false);
+          MenuExportar.setEnabled(false);
+      }
+    private void MenuHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHomeActionPerformed
         int W = jPanel1.getWidth();
         int H = jPanel1.getHeight();
         tabla.setPreferredSize(new Dimension(W, H));
         new explode(jPanel1, tabla).play();
         jPanel1.updateUI();
         jPanel1.validate();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
+        Enablet();
+        enableHome();
+    }//GEN-LAST:event_MenuHomeActionPerformed
+    public void CerrarVentana(){
+        try {
+           this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+            public void WindowClosing(WindowEvent e)    {
+                confirmarSalida();
+              //System.out.println("Boton");
+            }
+        });
+           this.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void confirmarSalida(){
+        int valor = JOptionPane.showConfirmDialog(this, "Estas seguro de salir","advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.CLOSED_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+            System.exit(0);
+            }
+    }
     private void jMenuBar1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuBar1MouseEntered
        
     }//GEN-LAST:event_jMenuBar1MouseEntered
@@ -168,24 +297,53 @@ public void setFondo(){
     }//GEN-LAST:event_jMenuBar1MouseExited
 
     private void MenuGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuGuardarActionPerformed
-      tabla.setGuardar();
+      //tabla.setGuardar();
+       tabla.setExclusive();
     }//GEN-LAST:event_MenuGuardarActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void MenuMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMostrarActionPerformed
       tabla.setMostrar();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+     
+    }//GEN-LAST:event_MenuMostrarActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void MenuBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuBuscarActionPerformed
       tabla.setBuscar();
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_MenuBuscarActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void MenuIdentificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuIdentificarActionPerformed
         tabla.setIdentyColors();
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_MenuIdentificarActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    try {
+        File path = new File ("C:\\Users\\jonatan\\Documents\\NetBeansProjects\\c++\\Unid\\src\\pdf\\lsi.pdf");
+        Desktop.getDesktop().open(path);
+        System.out.println("Se abrio correctamente.");
+        }catch (IOException ex) {
+        ex.printStackTrace();
+    }
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemActionPerformed
+       tabla.getGuardar();
+    }//GEN-LAST:event_MenuItemActionPerformed
+
+    private void MenuImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuImportarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuImportarActionPerformed
+
+    private void MenuExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuExportarActionPerformed
+       tabla.setImprimir();
+    }//GEN-LAST:event_MenuExportarActionPerformed
+
+    private void MenuAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuAyudaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuAyudaActionPerformed
    
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -209,7 +367,7 @@ public void setFondo(){
             java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -219,14 +377,22 @@ public void setFondo(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MenuAyuda;
+    private javax.swing.JMenuItem MenuBuscar;
+    private javax.swing.JMenuItem MenuExportar;
     private javax.swing.JMenuItem MenuGuardar;
+    private javax.swing.JMenuItem MenuHome;
+    private javax.swing.JMenuItem MenuIdentificar;
+    private javax.swing.JMenuItem MenuImportar;
+    private javax.swing.JMenuItem MenuInformacion;
+    private javax.swing.JMenuItem MenuItem;
+    private javax.swing.JMenuItem MenuMostrar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

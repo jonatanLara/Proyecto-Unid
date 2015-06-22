@@ -5,17 +5,21 @@
  */
 package unid;
 
+
+
 /**
  *
  * @author jonatan
  */
 public class Unid {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-      new Splash.Splash_Ventana().setVisible(true);
+       /** try {
+                UIManager.setLookAndFeel(new SyntheticaWhiteVisionLookAndFeel());
+        } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Eroor en el look adn Feel"+e);
+        }**/
+        new Splash.Splash_Ventana().setVisible(true);
     }
     
 }

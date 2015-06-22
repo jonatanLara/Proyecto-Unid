@@ -25,9 +25,9 @@ public final class Splash_Ventana extends javax.swing.JFrame {
     //= new ImagenDeFondo("Unid_conecta.png");
     public Splash_Ventana() {
         initComponents();
-        //setContentPane(modelos);
+        setContentPane(modelos);
         iniciar();
-        random();
+        //random();
     }
     public void iniciar(){
         setLocationRelativeTo(null);
@@ -84,6 +84,7 @@ public final class Splash_Ventana extends javax.swing.JFrame {
                     
                     new unid.MainForm().setVisible(true);
                     this.dispose();
+                   //this.setDefaultCloseOperation(0);
                 }
             }
            
