@@ -1,5 +1,6 @@
 package unid;
 
+import groovy.ui.text.FindReplaceUtility;
 import java.awt.Color;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -218,35 +219,44 @@ public class DropExcel implements DropTargetListener {
      * Muestra los datos en consola por ahora!!
      */
     public void mostrar(){
-      
+      int conversion,suma = 0, cont=0;
         for (int i = 1; i < str.size(); i++) {
             if (str.get(i)!=null) {
-             System.out.println("*"+str.get(i)); 
-             datoGeneral.CharAts(str.get(i));
-            }else if (str.get(i)== " ") {
-                System.out.println("null");
+             //System.out.println("*"+str.get(i)); 
+                conversion = Integer.parseInt(str.get(i));
+                System.out.println("int " +conversion);
+                suma = suma + conversion;
+                cont++;
+           //  datoGeneral.CharAts(str.get(i));
             }
-            
-            }
+          
+         }
+         
          String mensaje = "se mostraron los datos";
-            JOptionPane.showMessageDialog(null, mensaje);
+         JOptionPane.showMessageDialog(null, mensaje);
               
     }
     
     public void GRDE(){
-        int grde, suma=0,cont = 0;
-         for (int i = 1; i <tableModel.getRowCount(); i++) {
-            if (tableModel.getColumnName(21).equals("GRDE")) {
-                  String n = datoGeneral.ConvertirObjToString(tableModel.getValueAt(i, 21));
-                  grde =Integer.parseInt(n);
-                  suma = suma+grde;
-                  
-                  datoGeneral.setGRDE(suma);
-                  System.out.println("GRDE = " +datoGeneral.getGRDE());
-              }
-        }    
-         
-    }
+        exclusive();
+        int conversion,suma = 0, cont=0,contn=0;
+        for (int i = 1; i < str.size(); i++) {
+            String comprobar = str.get(i);
+            if (comprobar.length()==0) {
+                contn++;//contn es el numero de espacios en blanco 
+                }else{
+                conversion = Integer.parseInt(str.get(i));
+                suma = suma + conversion;
+                cont++;
+            }
+        }
+         System.out.println("Suma total es "+suma);
+         System.out.println("espacios ocupados "+cont);
+         System.out.println("espacions vacios "+contn);
+         System.out.println("Promedio: "+(suma/cont));
+         String dato = datoGeneral.ConvertirObjToString(suma/cont);
+         datoGeneral.setGRDE(dato);
+  }
     /**
      * bucar cuantos estudiates pertenecen a esa carrera.!!
      */
@@ -274,7 +284,7 @@ public class DropExcel implements DropTargetListener {
             jtable.getColumnModel().getColumn(num).setCellRenderer(new  Colors());
     }
     public void print(){
-             prueva();//GRDE();
+             prueva();GRDE();
             /**ya busque como bucar o leer la cabecera y tmb como  obtener el dato*//*int fila, int columna */
           /* if (tableModel.getColumnName(0).equals("ID")) { 
                   String id = datoGeneral.ConvertirObjToString(tableModel.getValueAt(0, 0));
@@ -284,6 +294,7 @@ public class DropExcel implements DropTargetListener {
               }*/
              if (tableModel.getColumnName(1).equals("Nombre")) {
                   String nom = datoGeneral.ConvertirObjToString(tableModel.getValueAt(0, 1));
+                  datoGeneral.CharAts(nom);
                  datoGeneral.setNombre(nom);
                 
                   System.out.println("Nombre  = "+ datoGeneral.getNombre());
@@ -297,6 +308,12 @@ public class DropExcel implements DropTargetListener {
                   String mat = datoGeneral.ConvertirObjToString(tableModel.getValueAt(1, 5));
                   datoGeneral.setMaterias(mat);
                   System.out.println("Materia = " +datoGeneral.getMaterias());
+              }
+              /*Ingreso del estudiante */
+               if (tableModel.getColumnName(8).equals("PERIODO")) {
+                  String periodo = datoGeneral.ConvertirObjToString(tableModel.getValueAt(0, 8));
+                  datoGeneral.setPeriodo(periodo);
+                  System.out.println("Periodo = " +datoGeneral.getPeriodo());
               }
     }
     
@@ -312,7 +329,9 @@ public class DropExcel implements DropTargetListener {
             parametros.put("Nombre",datoGeneral.getNombre());
             parametros.put("Lic",datoGeneral.getLic());
             parametros.put("Fecha",horafecha.getFecha());
-          //  parametros.put("Promedio",datoGeneral.getGRDE());
+            parametros.put("Promedio","Promedio:   "+datoGeneral.getGRDE());
+            
+            parametros.put("Ingreso", "INGRESO DEL "+datoGeneral.getPeriodo() +" EN ADELANTE");
             
             JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, new JREmptyDataSource());
             JasperViewer view = new JasperViewer(jasperPrint);

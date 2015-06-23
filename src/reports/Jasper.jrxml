@@ -2,21 +2,18 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dbe4eef4-0f65-407a-aaf5-74ba5764ebd2">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="7"/>
-	<property name="ireport.y" value="37"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="ID" class="java.lang.String"/>
 	<parameter name="Nombre" class="java.lang.String"/>
 	<parameter name="Lic" class="java.lang.String"/>
 	<parameter name="Fecha" class="java.lang.String"/>
 	<parameter name="Promedio" class="java.lang.String"/>
+	<parameter name="Ingreso" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="94" splitType="Stretch">
-			<image>
-				<reportElement x="656" y="0" width="146" height="64" uuid="9595d37e-cac8-4892-83a0-35dd56280781"/>
-				<imageExpression><![CDATA["C:\\Users\\jonatan\\Pictures\\iconos\\descarga.jpg"]]></imageExpression>
-			</image>
 			<textField>
 				<reportElement x="0" y="53" width="217" height="20" uuid="0c44ae91-9a2a-4fb4-8c50-016ba7090109"/>
 				<textFieldExpression><![CDATA[$P{ID}]]></textFieldExpression>
@@ -40,18 +37,26 @@
 				</textElement>
 				<text><![CDATA[UNIVERSIDAD INTERAMERICANA PARA EL DESARROLLO.]]></text>
 			</staticText>
+			<image>
+				<reportElement x="656" y="1" width="145" height="73" uuid="0cf3deba-8c54-4294-965b-dddce05d423a"/>
+				<imageExpression><![CDATA["C:\\Users\\jonatan\\Documents\\NetBeansProjects\\c++\\Unid\\src\\imgReport\\descarga.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="15" splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="38" splitType="Stretch">
 			<textField>
-				<reportElement x="656" y="41" width="100" height="20" uuid="ad7a884e-ce83-458a-b9ff-f125874fcdb0"/>
+				<reportElement x="701" y="18" width="100" height="20" uuid="ad7a884e-ce83-458a-b9ff-f125874fcdb0"/>
 				<textFieldExpression><![CDATA[$P{Promedio}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="0" y="18" width="217" height="20" uuid="4d64528e-200a-47b1-a30a-c1ca3b1dd726"/>
+				<textFieldExpression><![CDATA[$P{Ingreso}]]></textFieldExpression>
+			</textField>
 		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
 		<band height="125" splitType="Stretch"/>

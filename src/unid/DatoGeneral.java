@@ -15,8 +15,8 @@ import sun.util.calendar.LocalGregorianCalendar;
  * @author jonatan
  */
 public class DatoGeneral {
-    private String id , nombre ,Lic , materias, CRSE;
-    private int GRDE;//CALIFICACION FINAL
+    private String id , nombre ,Lic , materias, CRSE,Periodo;
+    private String GRDE;//CALIFICACION FINAL
     public DatoGeneral(){}
 
     public String getId() {
@@ -38,17 +38,30 @@ public class DatoGeneral {
         return CRSE;
     }
 
-    public int getGRDE() {
+    public String getGRDE() {
         return GRDE;
     }
+    public String getPeriodo() {
+        String ingreso="";
+        for (int i = 0; i < 4; i++) {
+            ingreso = ingreso+Periodo.charAt(i);
+        }
+        
+        return ingreso;
+    }
 
+    public void setPeriodo(String periodo) {
+        this.Periodo = periodo;
+        
+    }
     public void setId(String id) {
         this.id = id;
         
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = nombre; 
+       
     }
 
     public void setLic(String Lic) {
@@ -63,7 +76,7 @@ public class DatoGeneral {
         this.CRSE = CRSE;
     }
 
-    public void setGRDE(int GRDE) {
+    public void setGRDE(String GRDE) {
         this.GRDE = GRDE;
     }
     public String ConvertirObjToString(Object obj){
@@ -81,17 +94,12 @@ public class DatoGeneral {
         return n;
     }
     public void CharAts(String s){
-        for (int i = 0; i < s.length(); i++) {
-           /* if (s.length()>1) {
-                System.out.println("es mayor");
-            }
-            else{
-                System.out.println("es menor");
-            
+        if (s.length()== 0) {
+            System.out.println("el tamaño es- "+ s.length());
+        }else{
+            System.out.println("el tamaño es+ "+ s.length());
         }
-            System.out.println(i);*/
-            System.out.print(s.charAt(i));
-        }
+         
     }
     public static String Fecha(){
     Date fecha = new Date();
