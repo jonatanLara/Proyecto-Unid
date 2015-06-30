@@ -37,8 +37,10 @@ public class MainForm extends javax.swing.JFrame {
         Enablef();
         jPanel1.setBackground(new Color(0, 0, 0, 5));
         enableHomeF();
+        MenuInformacion.setText("Información");
         
     }
+    
    
     public void setFondo(){
         String arr[]  = new String[]{"Unid_conecta.png","adm.jpg","comunicacion.jpg","lic_sis.jpg"};
@@ -337,7 +339,7 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuExportarActionPerformed
 
     private void MenuAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuAyudaActionPerformed
-        // TODO add your handling code here:
+        tabla.setAbrirAyuda("index.html");
     }//GEN-LAST:event_MenuAyudaActionPerformed
    
     /**

@@ -6,6 +6,8 @@
 package unid;
 
 import java.awt.Color;
+import java.awt.Desktop;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -76,7 +78,14 @@ public class TablaExcel extends javax.swing.JPanel {
    public void setExclusive(){
         drop.exclusive();
    }
-    
+   public void setAbrirAyuda(String archivo){
+       try {
+           File objetofile = new File(archivo);
+           Desktop.getDesktop().open(objetofile);
+       } catch (Exception e) {
+           System.out.println("error"+e);
+       }
+   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

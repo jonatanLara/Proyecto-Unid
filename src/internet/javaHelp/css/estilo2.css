@@ -1,0 +1,402 @@
+
+*{
+	padding: 0;
+	margin: 0;	
+	
+}
+body{
+	
+}
+
+.Contenedor{
+	
+	margin: auto;
+	width:  95%;
+	max-width: 1000px;
+	box-shadow: 0 5px 2px rgba(0 , 0 , 0 , 0.2);
+}
+.Contenedor p {
+
+	margin-bottom:  40px;
+}
+
+
+header nav {
+
+	margin-bottom: 10px;
+	background:  #3498db;
+}
+header nav ul{
+	list-style: none;;
+	overflow: hidden;
+	
+	
+}
+	header  nav ul li{
+		float: left;
+
+
+	}
+		header nav ul li a{
+			display: inline-block;
+			padding:  20px;
+			color:  #fff;
+			text-decoration: none;
+			
+		}
+		header nav ul li a:hover{
+			background:  #2980b9;
+		}
+.menu-fixed{
+	position:  fixed;
+	z-index: 1000;
+	top: 0;
+	width: 100%;
+	max-width: 1000px;
+}
+.menu-fixed ul li a{
+	padding: 15px 20px;
+
+}
+article.Tabla{
+	margin: auto;
+	width: 1000px;
+	height: auto;
+	background-color: #F8F4F4;
+	box-shadow: 0 5px 2px rgba(0 , 0 , 0 , 0.2);
+}
+/* boton inciar */
+div.Home{
+	margin: 15px;
+	width: 350px;
+	height: 300px;
+	background-color: red;
+	overflow: hidden;
+	cursor: pointer;
+	box-shadow: 0 5px 2px rgba(0 , 0 , 0 , 0.2);
+	display: inline-block;
+
+}
+div.imagen{
+	width: 350px;
+	height: 300px;
+	background-color: #B2E0F5;
+	overflow: hidden;
+	-webkit-transition: height .4s;
+}
+
+img.imagen{
+	display: block;
+	width: 145px;
+	height: 145px;
+	margin: 70px auto;
+	-webkit-transition: margin-top .4s;
+	
+
+}
+div.informacion{
+	width: 350px;
+	height: 0px;
+	background-color: #0E797A;
+	overflow: hidden;
+	-webkit-transition: height .4s;
+}
+p.titulo{
+	margin: 15px;
+	font-size: 1.1em;
+	color: #fff;
+	
+}
+p.texto{
+	margin: 15px;
+	color: white;
+	font-size: 14px;
+}
+/*boton xls */
+div.xls{
+	margin: 15px;
+	width: 350px;
+	height: 300px;
+	background-color: red;
+	overflow: hidden;
+	cursor: pointer;
+	box-shadow: 0 5px 2px rgba(0 , 0 , 0 , 0.2);
+	display: inline-block;
+}
+div.img_xls{
+	width: 350px;
+	height: 300px;
+	background-color: #B2E0F5;
+	overflow: hidden;
+	-webkit-transition: height .4s;
+}
+img.xls{
+	display: block;
+	width: 145px;
+	height: 145px;
+	margin: 70px auto;
+	-webkit-transition: margin-top .4s;
+}
+div.info_xls{
+	width: 350px;
+	height: 0px;
+	background-color: #0E797A;
+	overflow: hidden;
+	-webkit-transition: height .4s;
+}
+/* boton pdf*/
+div.pdf{
+	margin: 15px;
+	width: 350px;
+	height: 300px;
+	background-color: red;
+	overflow: hidden;
+	cursor: pointer;
+	box-shadow: 0 5px 2px rgba(0 , 0 , 0 , 0.2);
+	display: inline-block;
+}
+div.img_pdf{
+	width: 350px;
+	height: 300px;
+	background-color: #B2E0F5;
+	overflow: hidden;
+	-webkit-transition: height .4s;
+}
+img.img_pdf{
+	display: block;
+	width: 145px;
+	height: 145px;
+	margin: 70px auto;
+	-webkit-transition: margin-top .4s;
+}
+div.info_pdf{
+	width: 350px;
+	height: 0px;
+	background-color: #0E797A;
+	overflow: hidden;
+	-webkit-transition: height .4s;
+}
+
+/* boton guardar */
+div.guardar{
+	margin: 15px;
+	width: 350px;
+	height: 300px;
+	background-color: red;
+	overflow: hidden;
+	cursor: pointer;
+	box-shadow: 0 5px 2px rgba(0 , 0 , 0 , 0.2);
+	display: inline-block;
+}
+div.img_guardar{
+	width: 350px;
+	height: 300px;
+	background-color: #B2E0F5;
+	overflow: hidden;
+	-webkit-transition: height .4s;
+}
+img.img_guardar{
+	display: block;
+	width: 145px;
+	height: 145px;
+	margin: 70px auto;
+	-webkit-transition: margin-top .4s;
+}
+div.info_guardar{
+	width: 350px;
+	height: 0px;
+	background-color: #0E797A;
+	overflow: hidden;
+	-webkit-transition: height .4s;
+}
+
+div.buscar{
+	margin: 15px;
+	width: 350px;
+	height: 300px;
+	background-color: red;
+	overflow: hidden;
+	cursor: pointer;
+	box-shadow: 0 5px 2px rgba(0 , 0 , 0 , 0.2);
+	display: inline-block;
+}
+div.img_buscar{
+	width: 350px;
+	height: 300px;
+	background-color: #B2E0F5;
+	overflow: hidden;
+	-webkit-transition: height .4s;
+}
+img.img_buscar{
+	display: block;
+	width: 145px;
+	height: 145px;
+	margin: 70px auto;
+	-webkit-transition: margin-top .4s;
+}
+div.info_buscar{
+	width: 350px;
+	height: 0px;
+	background-color: #0E797A;
+	overflow: hidden;
+	-webkit-transition: height .4s;
+}
+/* */
+div.info{
+	margin: 15px;
+	width: 350px;
+	height: 300px;
+	background-color: red;
+	overflow: hidden;
+	cursor: pointer;
+	box-shadow: 0 5px 2px rgba(0 , 0 , 0 , 0.2);
+	display: inline-block;
+}
+div.img_info{
+	width: 350px;
+	height: 300px;
+	background-color: #B2E0F5;
+	overflow: hidden;
+	-webkit-transition: height .4s;
+}
+img.img_info{
+	display: block;
+	width: 145px;
+	height: 145px;
+	margin: 70px auto;
+	-webkit-transition: margin-top .4s;
+}
+div.info_info{
+	width: 350px;
+	height: 0px;
+	background-color: #0E797A;
+	overflow: hidden;
+	-webkit-transition: height .4s;
+}
+
+div.ayuda{
+	margin: 15px;
+	width: 350px;
+	height: 300px;
+	background-color: red;
+	overflow: hidden;
+	cursor: pointer;
+	box-shadow: 0 5px 2px rgba(0 , 0 , 0 , 0.2);
+	display: inline-block;
+}
+div.img_ayuda{
+	width: 350px;
+	height: 300px;
+	background-color: #B2E0F5;
+	overflow: hidden;
+	-webkit-transition: height .4s;
+}
+img.img_ayuda{
+	display: block;
+	width: 145px;
+	height: 145px;
+	margin: 70px auto;
+	-webkit-transition: margin-top .4s;
+}
+div.info_ayuda{
+	width: 350px;
+	height: 0px;
+	background-color: #0E797A;
+	overflow: hidden;
+	-webkit-transition: height .4s;
+}
+
+
+
+footer{
+	background-color:  #19AB38;
+	margin: auto;
+	width: 1000px;
+	height: 45px;
+	box-shadow: 0 5px 1px rgba(0 , 0 , 0 , 0.2);
+	
+
+}
+div.pie_pag{
+	text-align: center;
+	height: 35px;
+	margin: 25px;
+}
+footer a{
+	color: #fff;
+	padding: 0.8em;
+	
+
+}
+/*Efecto hover incio */
+div.Home:hover div.imagen{
+	height: 210px;
+}
+div.Home:hover div.informacion{
+	height: 90px;
+}
+div.Home:hover img.imagen{
+	margin-top: 40px;
+	
+	
+}
+/*efecto hover xls*/
+div.xls:hover div.img_xls{
+	height: 210px;
+}
+div.xls:hover div.info_xls{
+	height: 90px;
+}
+div.xls:hover img.xls{
+	margin-top: 40px;
+}
+/*efecto hover pdf*/
+div.pdf:hover div.img_pdf{
+	height: 210px;
+}
+div.pdf:hover div.info_pdf{
+	height: 90px;
+}
+div.pdf:hover img.img_pdf{
+	margin-top: 40px;
+}
+/*hover guardar*/
+div.guardar:hover div.img_guardar{
+	height: 210px;
+}
+div.guardar:hover div.info_guardar{
+	height: 90px;
+}
+div.guardar:hover img.img_guardar{
+	margin-top: 40px;
+}
+/*hover guardar*/
+div.buscar:hover div.img_buscar{
+	height: 210px;
+}
+div.buscar:hover div.info_buscar{
+	height: 90px;
+}
+div.buscar:hover img.img_buscar{
+	margin-top: 40px;
+}
+/*hover info*/
+div.info:hover div.img_info{
+	height: 210px;
+}
+div.info:hover div.info_info{
+	height: 90px;
+}
+div.info:hover img.img_info{
+	margin-top: 40px;
+}
+/*hover ayuda*/
+div.ayuda:hover div.img_ayuda{
+	height: 210px;
+}
+div.ayuda:hover div.info_ayuda{
+	height: 90px;
+}
+div.ayuda:hover img.img_ayuda{
+	margin-top: 40px;
+}

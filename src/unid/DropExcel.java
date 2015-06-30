@@ -1,6 +1,5 @@
 package unid;
 
-import groovy.ui.text.FindReplaceUtility;
 import java.awt.Color;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -207,13 +206,63 @@ public class DropExcel implements DropTargetListener {
         }
     }
     ArrayList<String> str = new ArrayList<>();
+    ArrayList<String> title = new ArrayList<>();
+    
     public void exclusive()
     {
         for (int i = 0; i < jtable.getRowCount(); i++) {
-             str.add(tableModel.getValueAt(i, 21).toString());
+             str.add(tableModel.getValueAt(i, 22).toString());
               //  str.add(tableModel.getValueAt(1, 2).toString());
            // System.out.println("*"+str.get(i));
             }
+        for (int i = 0; i < jtable.getRowCount(); i++) {
+             title.add(tableModel.getValueAt(i, 10).toString());
+             
+            // System.out.println("title "+title.get(i));
+            }
+    }
+    public void Title(){
+        int cont=0;int reprobadas=0, reprobarEStadia= -1;
+        String comprobar = "";
+        for (int i = 0; i < title.size(); i++) {
+            comprobar = title.get(i);
+            if (comprobar.equals("Curso Inducción Alum. NI")) {
+               // System.out.println(" Curso "+title.remove(i));
+                title.remove(i);
+                } if(comprobar.equals("Basic 1")){
+                   title.remove(i);
+                }if(comprobar.equals("Exento inglés")){
+                   title.remove(i);
+                }
+                if(comprobar.equals("Estadía empresarial")){
+                   reprobarEStadia++;
+                   title.remove(i);
+                }
+                if (comprobar.equals("Pre-Estadía Empresarial")) {
+                    title.remove(i);
+                } if(comprobar.equals("Taller de Pre- Egreso")) {
+                    title.remove(i);
+                }
+                if (comprobar.length()==0) {
+                     title.remove(i);//contn es el numero de espacios en blanco 
+                }
+                
+                else{
+                
+                cont++;
+            }
+        }
+        System.out.println("numero de materias "+cont);
+        System.out.println("repobadas "+reprobadas);
+        System.out.println("Cuantas veces ha llebado estadia "+reprobarEStadia);
+        String dato = datoGeneral.ConvertirObjToString((cont*7));
+        datoGeneral.setCreditos(dato);
+        System.out.println("Credistos "+datoGeneral.getCreditos());
+        
+        for (int i = 0; i < title.size(); i++) {
+            System.out.println("title "+ title.get(i));
+            
+        }
     }
     /**
      * Muestra los datos en consola por ahora!!
@@ -244,16 +293,19 @@ public class DropExcel implements DropTargetListener {
             String comprobar = str.get(i);
             if (comprobar.length()==0) {
                 contn++;//contn es el numero de espacios en blanco 
-                }else{
+                }
+               // if(comprobar.equals("AC")){
+                //}
+ else {
                 conversion = Integer.parseInt(str.get(i));
                 suma = suma + conversion;
                 cont++;
             }
         }
-         System.out.println("Suma total es "+suma);
+         //System.out.println("Suma total es "+suma);
          System.out.println("espacios ocupados "+cont);
          System.out.println("espacions vacios "+contn);
-         System.out.println("Promedio: "+(suma/cont));
+         //System.out.println("Promedio: "+(suma/cont));
          String dato = datoGeneral.ConvertirObjToString(suma/cont);
          datoGeneral.setGRDE(dato);
   }
@@ -284,7 +336,7 @@ public class DropExcel implements DropTargetListener {
             jtable.getColumnModel().getColumn(num).setCellRenderer(new  Colors());
     }
     public void print(){
-             prueva();GRDE();
+             prueva();GRDE();Title();
             /**ya busque como bucar o leer la cabecera y tmb como  obtener el dato*//*int fila, int columna */
           /* if (tableModel.getColumnName(0).equals("ID")) { 
                   String id = datoGeneral.ConvertirObjToString(tableModel.getValueAt(0, 0));
@@ -294,30 +346,41 @@ public class DropExcel implements DropTargetListener {
               }*/
              if (tableModel.getColumnName(1).equals("Nombre")) {
                   String nom = datoGeneral.ConvertirObjToString(tableModel.getValueAt(0, 1));
-                  datoGeneral.CharAts(nom);
-                 datoGeneral.setNombre(nom);
-                
+                  datoGeneral.setNombre(nom);
                   System.out.println("Nombre  = "+ datoGeneral.getNombre());
               }
-              if (tableModel.getColumnName(2).equals("Prog")) {
-                  String lic = datoGeneral.ConvertirObjToString(tableModel.getValueAt(0, 2));
+              if (tableModel.getColumnName(3).equals("Prog")) {
+                  String lic = datoGeneral.ConvertirObjToString(tableModel.getValueAt(0, 3));
                   datoGeneral.setLic(lic);
                   System.out.println("Lic = " +datoGeneral.getLic());
               }
-              if (tableModel.getColumnName(5).equals("Materias")) {
-                  String mat = datoGeneral.ConvertirObjToString(tableModel.getValueAt(1, 5));
+              if (tableModel.getColumnName(4).equals("Estatus")) {
+                   String Estatus = datoGeneral.ConvertirObjToString(tableModel.getValueAt(0, 4));
+                   datoGeneral.setStatus(Estatus);
+                   System.out.println("Estatus " +Estatus);
+               }
+              if (tableModel.getColumnName(6).equals("Materias")) {
+                  String mat = datoGeneral.ConvertirObjToString(tableModel.getValueAt(1, 6));
                   datoGeneral.setMaterias(mat);
                   System.out.println("Materia = " +datoGeneral.getMaterias());
               }
               /*Ingreso del estudiante */
-               if (tableModel.getColumnName(8).equals("PERIODO")) {
-                  String periodo = datoGeneral.ConvertirObjToString(tableModel.getValueAt(0, 8));
+               if (tableModel.getColumnName(9).equals("PERIODO")) {
+                  String periodo = datoGeneral.ConvertirObjToString(tableModel.getValueAt(0, 9));
                   datoGeneral.setPeriodo(periodo);
                   System.out.println("Periodo = " +datoGeneral.getPeriodo());
               }
+               
+              /* if (tableModel.getColumnName(9).equals("TITLE")) {
+                   String Estatus = datoGeneral.ConvertirObjToString(tableModel.getValueAt(0, 9));
+                   datoGeneral.setStatus(Estatus);
+                   System.out.println("Estatus "+Estatus);
+               }
+               /* 
+                Curso Inducción Alum. NI,Pre-Estadía Empresarial,Taller de Pre- Egreso */
     }
     
-    public void imprimir(){
+   public void imprimir(){
         try {
             JasperReport reporte = (JasperReport)JRLoader.loadObject("Jasper.jasper");
             Map  parametros = new HashMap();
@@ -330,16 +393,22 @@ public class DropExcel implements DropTargetListener {
             parametros.put("Lic",datoGeneral.getLic());
             parametros.put("Fecha",horafecha.getFecha());
             parametros.put("Promedio","Promedio:   "+datoGeneral.getGRDE());
+            parametros.put("Estatus","Estatus: "+datoGeneral.getStatus());
+            parametros.put("Creditos","Creditos : "+datoGeneral.getCreditos());
+            
             
             parametros.put("Ingreso", "INGRESO DEL "+datoGeneral.getPeriodo() +" EN ADELANTE");
             
             JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, new JREmptyDataSource());
-            JasperViewer view = new JasperViewer(jasperPrint);
+            JasperViewer view = new JasperViewer(jasperPrint,false);
             view.setTitle("Reporte de  "+datoGeneral.getNombre());
             
             view.setVisible(true);
-            
+            //view.setDefaultCloseOperation();
+           
         } catch (Exception e) {
+           // JOptionPane.showMessageDialog(null, e.getMessage());
+            System.out.println("mensaje "+e );
         }
     }
     

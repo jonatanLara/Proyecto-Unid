@@ -5,22 +5,24 @@
  */
 package unid;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import org.apache.poi.ss.usermodel.ExcelStyleDateFormatter;
-import sun.util.calendar.LocalGregorianCalendar;
 
 /**
  *
  * @author jonatan
  */
 public class DatoGeneral {
-    private String id , nombre ,Lic , materias, CRSE,Periodo;
+    private String id , nombre ,Lic , materias, CRSE,Periodo,status,Creditos;
     private String GRDE;//CALIFICACION FINAL
-    public DatoGeneral(){}
+    
+    public DatoGeneral(){
+    }
 
     public String getId() {
         return id;
+    }
+
+    public String getCreditos() {
+        return Creditos;
     }
 
     public String getNombre() {
@@ -41,6 +43,14 @@ public class DatoGeneral {
     public String getGRDE() {
         return GRDE;
     }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+    
     public String getPeriodo() {
         String ingreso="";
         for (int i = 0; i < 4; i++) {
@@ -57,6 +67,10 @@ public class DatoGeneral {
     public void setId(String id) {
         this.id = id;
         
+    }
+
+    public void setCreditos(String Creditos) {
+        this.Creditos = Creditos;
     }
 
     public void setNombre(String nombre) {
@@ -101,9 +115,5 @@ public class DatoGeneral {
         }
          
     }
-    public static String Fecha(){
-    Date fecha = new Date();
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
-        return  formatoFecha.format(fecha);
-    }
+    
 }

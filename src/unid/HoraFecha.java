@@ -24,8 +24,8 @@ public class HoraFecha {
         int dia = cale.get(Calendar.DAY_OF_MONTH);
         int diaSemana = cale.get(Calendar.DAY_OF_WEEK);
         int mes = cale.get(Calendar.MONTH);
-        int aÃ±o = cale.get(Calendar.YEAR);
-        String fecha = dias[diaSemana-1]+", "+dia+" de "+meses[mes]+" de "+aÃ±o;
+        int año = cale.get(Calendar.YEAR);
+        String fecha = dias[diaSemana-1]+", "+dia+" de "+meses[mes]+" de "+año;
         return fecha;
     }
     public String getHora(){
@@ -39,11 +39,11 @@ public class HoraFecha {
         int dia = cale.get(Calendar.DAY_OF_MONTH);
         int diaSemana = cale.get(Calendar.DAY_OF_WEEK);
         int mes = cale.get(Calendar.MONTH);
-        int aÃ±o = cale.get(Calendar.YEAR);
+        int año = cale.get(Calendar.YEAR);
         int seguundo = cale.get(Calendar.SECOND);
         int minuto = cale.get(Calendar.MINUTE);
         int hora = cale.get(Calendar.HOUR_OF_DAY);
-        String fechayfecha = dias[diaSemana-1]+". "+dia+" de "+meses[mes]+" de "+aÃ±o+" Hora "+ hora+":"+minuto+":"+seguundo;
+        String fechayfecha = dias[diaSemana-1]+". "+dia+" de "+meses[mes]+" de "+año+" Hora "+ hora+":"+minuto+":"+seguundo;
         return fechayfecha;
     }
 }
