@@ -249,7 +249,7 @@ public class DropExcel implements DropTargetListener {
         for (int j = 0; j < calInt.size(); j++) {
             String mat, cal;
             n = Integer.parseInt(calInt.get(j));
-            if (n == 9) {/* menor a 5 o tambien OU*/
+            if (n <=5) {/* menor a 5 o tambien OU*/
 
                 mat = title.get(j);
                 cal = calInt.get(j);
@@ -258,11 +258,15 @@ public class DropExcel implements DropTargetListener {
                 contMateriasRepro++;
                 //System.out.println(""+title.get(j)+" : "+n);
                 System.out.println("" + mat + " " + cal);
+            }else{
+                System.out.println("no hay materias reprobadas");
+                
             }
             //System.out.println(""+n);
         }
         System.out.println("Numero de Materias reprobadas :" + contMateriasRepro);
-
+        Materias m = new Materias(0,null,null);
+       listMateria.add(m);
     }
 
     public void Title() {
@@ -332,16 +336,24 @@ public class DropExcel implements DropTargetListener {
         JOptionPane.showMessageDialog(null, mensaje);
 
     }
-
-    public void GRDE() {
+    public void removerdatos(){
         exclusive();
+        for (int i = 0; i <str.size(); i++) {
+            String da=str.get(i);
+            if (da.equals("AC")) {
+                System.out.println("remo"+str.remove(i));
+            }
+        }
+    }
+    public void GRDE() {
+        removerdatos();
         int conversion, suma = 0, cont = 0, contn = 0;
-        for (int i = 1; i < str.size(); i++) {
+        for (int i = 0; i < str.size(); i++) {
             String comprobar = str.get(i);
             if (comprobar.length() == 0) {
                 contn++;//contn es el numero de espacios en blanco 
-            } // if(comprobar.equals("AC")){
-            //}
+            } // 
+            
             else {
                 conversion = Integer.parseInt(str.get(i));
                 suma = suma + conversion;
