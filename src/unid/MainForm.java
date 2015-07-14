@@ -16,8 +16,18 @@ import java.io.IOException;
 import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.text.TabableView;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -331,7 +341,27 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuItemActionPerformed
 
     private void MenuImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuImportarActionPerformed
-        // TODO add your handling code here:
+        try{
+        List listaPariticipante = new ArrayList();
+
+        for (int i = 1; i <= 10; i++) 
+        {
+            Materias p = new Materias( i,"Particpante " + i, "Usuario " + i); 
+            listaPariticipante.add(p);
+        } 
+        JasperReport reporte = (JasperReport) JRLoader.loadObject("reporte2.jasper");
+        
+        Map parametros = new HashMap<String,String>();
+        parametros.put("titulo", "Ejemplo de JasperReports");
+        parametros.put("autor", "Jonatan Lara");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte,parametros, new JRBeanCollectionDataSource(listaPariticipante));
+            JasperViewer view = new JasperViewer(jasperPrint,false);
+            view.setTitle("Reporte de  ");
+            view.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Operacion Exitosa");
+        }catch(JRException e){
+            System.out.println("mensaje"+e);
+        }
     }//GEN-LAST:event_MenuImportarActionPerformed
 
     private void MenuExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuExportarActionPerformed
@@ -339,7 +369,7 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuExportarActionPerformed
 
     private void MenuAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuAyudaActionPerformed
-        tabla.setAbrirAyuda("index.html");
+        tabla.setAbrirAyuda("C:\\Users\\jonatan\\Documents\\NetBeansProjects\\c++\\Unid\\src\\internet\\javaHelp\\index.html");
     }//GEN-LAST:event_MenuAyudaActionPerformed
    
     /**

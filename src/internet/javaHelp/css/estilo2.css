@@ -110,7 +110,7 @@ p.titulo{
 p.texto{
 	margin: 15px;
 	color: white;
-	font-size: 14px;
+	font-size: 15px;
 }
 /*boton xls */
 div.xls{
@@ -143,6 +143,17 @@ div.info_xls{
 	background-color: #0E797A;
 	overflow: hidden;
 	-webkit-transition: height .4s;
+}
+p.titulo{
+	margin: 15px;
+	font-size: 1.1em;
+	color: #fff;
+	
+}
+p.texto_xls{
+	margin: 15px;
+	color: white;
+	font-size: 15px;
 }
 /* boton pdf*/
 div.pdf{
@@ -177,6 +188,17 @@ div.info_pdf{
 	-webkit-transition: height .4s;
 }
 
+p.titulo{
+	margin: 15px;
+	font-size: 1.1em;
+	color: #fff;
+	
+}
+p.texto_pdf{
+	margin: 15px;
+	color: white;
+	font-size: 15px;
+}
 /* boton guardar */
 div.guardar{
 	margin: 15px;
@@ -241,6 +263,18 @@ div.info_buscar{
 	overflow: hidden;
 	-webkit-transition: height .4s;
 }
+p.titulo{
+	margin: 15px;
+	font-size: 1.2em;
+	color: #fff;
+	
+}
+p.texto_buscar{
+	margin: 15px;
+	color: white;
+	font-size: 15px;
+}
+
 /* */
 div.info{
 	margin: 15px;
@@ -272,6 +306,17 @@ div.info_info{
 	background-color: #0E797A;
 	overflow: hidden;
 	-webkit-transition: height .4s;
+}
+p.titulo{
+	margin: 15px;
+	font-size: 1.2em;
+	color: #fff;
+	
+}
+p.texto_info{
+	margin: 15px;
+	color: white;
+	font-size: 15px;
 }
 
 div.ayuda{
@@ -306,6 +351,17 @@ div.info_ayuda{
 	-webkit-transition: height .4s;
 }
 
+p.titulo{
+	margin: 15px;
+	font-size: 1.2em;
+	color: #fff;
+	
+}
+p.texto_ayuda{
+	margin: 15px;
+	color: white;
+	font-size: 15px;
+}
 
 
 footer{

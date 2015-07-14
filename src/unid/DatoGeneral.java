@@ -115,5 +115,9 @@ public class DatoGeneral {
         }
          
     }
-    
+    public void verificacionDatos(String obj){
+   while (obj.length()==0) {
+      
+        }
+    }
 }
